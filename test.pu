@@ -1,4 +1,25 @@
 @startuml
-title シーケンス図
-アリス -> ボブ: リクエスト
+title:関連
+' クラス
+Class "A"  as A {
+aaa
+}
+Class "関連"  as 関連 {
+bbb
+}
+Class "方矢印"  as 片矢印 {
+ccc
+}
+Class "汎化"  as 汎化 {
+ddd
+}
+Class "コンポジション"  as コンポジション {
+ddd
+}
+
+' 関連
+A --   関連
+A -->  片矢印
+A --|> 汎化
+A --*  コンポジション
 @enduml
