@@ -1,0 +1,4 @@
+@startuml
+title シーケンス図
+アリス -> ボブ: リクエスト
+@enduml
