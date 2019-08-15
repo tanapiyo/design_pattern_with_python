@@ -1,0 +1,29 @@
+@startuml
+
+class Main {
+
+}
+class Print {
+  +printWeak
+  +printStrong
+}
+class PrintBanner {
+  printWeak
+  printStrong
+}
+class Banner {
+  showWithParen
+  showWithAster
+}
+
+Main --> Print
+PrintBanner ..|> Print
+PrintBanner --|> Banner
+@enduml
+
+' 関連
+'A --   関連
+'A -->  片矢印
+'A --|> 汎化
+'A ..|> 点線
+'A --*  コンポジション
