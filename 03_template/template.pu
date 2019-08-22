@@ -1,0 +1,42 @@
+@startuml
+
+title テンプレートパターン
+
+package main {
+    object main {
+    }
+}
+
+package AbstractDisplay {
+
+    class AbstractDisplay {
+        {abstract} open(arg): void
+        {abstract} print(arg): void
+        {abstract} close(arg): void
+        display(arg): void
+    }
+}
+
+package CharDisplay {
+    class CharDisplay {
+        open(arg): void
+        print(arg): void
+        close(arg): void
+    }
+}
+
+package StingDisplay {
+    class StingDisplay {
+        open(arg): void
+        print(arg): void
+        close(arg): void
+        printLine(arg): void
+    }
+}
+
+    CharDisplay --|> AbstractDisplay
+    StingDisplay --|> AbstractDisplay
+
+
+
+@enduml
