@@ -7,7 +7,7 @@ package main {
     }
 }
 
-package AbstractDisplay {
+package Display {
 
     class AbstractDisplay {
         {abstract} open(arg): void
@@ -15,23 +15,19 @@ package AbstractDisplay {
         {abstract} close(arg): void
         display(arg): void
     }
-}
-
-package CharDisplay {
     class CharDisplay {
         open(arg): void
         print(arg): void
         close(arg): void
     }
-}
 
-package StingDisplay {
     class StingDisplay {
         open(arg): void
         print(arg): void
         close(arg): void
         printLine(arg): void
     }
+
 }
 
     CharDisplay --|> AbstractDisplay
