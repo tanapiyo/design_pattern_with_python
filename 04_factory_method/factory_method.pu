@@ -1,0 +1,54 @@
+@startuml
+
+title ファクトリーメソッドパータン
+
+package main {
+    object main {
+    }
+}
+
+package Framework {
+    class Factory {
+        create(arg): void
+        create_product(arg): void
+        register_product(arg): void
+    }
+
+    class Product {
+        use(arg): void
+    }
+
+}
+
+package IdCard {
+    class IdCardFactory {
+        owners
+        create_product(arg): void
+        register_product(arg): void
+        get_owners(arg): void
+    }
+
+    class IdCard {
+        owner
+        use(arg): void
+        get_owner(arg): void
+    }
+
+}
+
+
+    ' class AbstractDisplay {
+    '     {abstract} open(arg): void
+    '     {abstract} print(arg): void
+    '     {abstract} close(arg): void
+    '     display(arg): void
+    ' }
+
+    IdCardFactory --|> Factory
+    IdCard --|> Product
+    Factory --> Product : Creates
+    IdCardFactory --> IdCard: Creates
+
+
+
+@enduml
