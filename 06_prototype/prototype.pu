@@ -1,0 +1,46 @@
+@startuml
+
+title プロトタイプ
+
+package main {
+    object main {
+    }
+}
+
+package Framework {
+    class Manager {
+        showcase: dict
+        register(arg): void
+        create(arg): void
+    }
+
+    abstract class Product {
+        {abstract} use(arg): void
+        {abstract} create_clone(arg): void
+    }
+
+    Manager -right-> Product : Uses
+}
+
+package Application {
+  class UnderlinePen {
+      ulchar: str
+      use(arg): void
+      create_clone(arg): void
+  }
+
+  class MessageBox {
+      decochar: str
+      owner
+      use(arg): void
+      create_clone(arg): void
+  }
+}
+  ' UnderlinePen --|> Product
+  Product <|-- UnderlinePen
+  Product <|-- MessageBox
+  ' MessageBox --|> Product
+
+
+
+@enduml
