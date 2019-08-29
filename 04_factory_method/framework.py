@@ -16,6 +16,10 @@ class Factory(metaclass=ABCMeta):
     pass
 
   def create(self, owner):
-    self.__p = self._create_product(owner)
-    self._register_product(self.__p)
-    return self.__p
+    #self.__p = self._create_product(owner)
+    #self._register_product(self.__p)
+    #return self.__p
+    __p = self._create_product(owner)#ローカル変数でいい
+    self._register_product(__p)
+    return __p
+    
