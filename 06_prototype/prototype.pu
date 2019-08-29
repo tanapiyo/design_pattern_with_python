@@ -41,6 +41,7 @@ package Application {
   Product <|-- MessageBox
   ' MessageBox --|> Product
 
+main -left-> Manager
 
 
 @enduml
