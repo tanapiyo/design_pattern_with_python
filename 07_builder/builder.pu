@@ -1,0 +1,53 @@
+@startuml
+
+title ビルダーパターン
+
+package main {
+    object main {
+    }
+}
+
+package Framework {
+    class Director {
+        builder
+        construct(arg): void
+    }
+
+    class Builder {
+        make_title(arg): void
+        make_string(arg): void
+        make_items(arg): void
+        close(arg): void
+    }
+  Director o-right- Builder
+}
+
+package Application {
+    class TextBuilder {
+        buffer
+        make_title(arg): void
+        make_string(arg): void
+        make_items(arg): void
+        close(arg): void
+        get_result(arg): void
+    }
+
+    class HTMLBuilder {
+        filename
+        writer
+        make_title(arg): void
+        make_string(arg): void
+        make_items(arg): void
+        close(arg): void
+        get_result(arg): void
+    }
+    TextBuilder -up-|> Builder
+    HTMLBuilder -up-|> Builder
+}
+
+    main -right-> Director : Users
+    main --> TextBuilder : Users
+    main --> HTMLBuilder : Users
+    
+
+@enduml
