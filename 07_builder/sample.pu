@@ -1,0 +1,122 @@
+@startuml
+
+title 実業務でやるならこんな設計かなー
+
+package main {
+    object main {
+    }
+}
+
+package main {
+    object main {
+    }
+}
+
+package builder {
+
+    abstract Director {
+        document: Document
+        write(): void
+    }
+
+    class TextDirector {
+        create(): void
+    }
+
+    class HtmlDirector {
+        create(): void
+    }
+
+    Director <|-- TextDirector
+    Director <|-- HtmlDirector
+
+    interface Element {
+        {abstract} get(): string
+    }
+
+    interface Title {
+    }
+
+    interface Content {
+    }
+
+    interface Items {
+    }
+
+    interface End {
+    }
+
+    Element <|-- Title
+    Element <|-- Content
+    Element <|-- Items
+    Element <|-- End
+
+    class TextTitle {
+        get(): string
+    }
+
+    class HtmlTitle {
+        get(): string
+    }
+
+    Title <|-- TextTitle
+    Title <|-- HtmlTitle
+
+    class TextContent {
+        get(): string
+    }
+
+    class HtmlContent {
+        get(): string
+    }
+
+    Content <|-- TextContent
+    Content <|-- HtmlContent
+
+    class TextItems {
+        get(): string
+    }
+
+    class HtmlItems {
+        get(): string
+    }
+
+    Items <|-- TextItems
+    Items <|-- HtmlItems
+
+    class TextEnd {
+        get(): string
+    }
+
+    class HtmlEnd {
+        get(): string
+    }
+
+    End <|-- TextEnd
+    End <|-- HtmlEnd
+
+    abstract Document {
+        title: Title
+        content: Content
+        items: Items
+        end: End
+        get(): string
+    }
+
+    class TextDocument {
+        get(): string
+    }
+
+    class HtmlDocument {
+        get(): string
+    }
+
+    Document <|-- TextDocument
+    Document <|-- HtmlDocument
+
+    main --right--> Director
+    Director o--right-- Document
+    Document o--right-- Element
+}
+
+@enduml

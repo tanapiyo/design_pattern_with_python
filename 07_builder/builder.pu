@@ -7,24 +7,21 @@ package main {
     }
 }
 
-package Framework {
+package Builder {
     class Director {
-        builder
+        builder: Builder
         construct(arg): void
     }
 
-    class Builder {
-        make_title(arg): void
-        make_string(arg): void
-        make_items(arg): void
-        close(arg): void
+    abstract Builder {
+        {abstract} make_title(arg): void
+        {abstract} make_str∂ing(arg): void
+        {abstract} make_items(arg): void
+        {abstract} close(arg): void
     }
-  Director o-right- Builder
-}
 
-package Application {
     class TextBuilder {
-        buffer
+        buffer: list
         make_title(arg): void
         make_string(arg): void
         make_items(arg): void
@@ -33,21 +30,25 @@ package Application {
     }
 
     class HTMLBuilder {
-        filename
-        writer
+        filename: string
+        writer: Writer
         make_title(arg): void
         make_string(arg): void
         make_items(arg): void
         close(arg): void
         get_result(arg): void
-    }
+    } 
+}
     TextBuilder -up-|> Builder
     HTMLBuilder -up-|> Builder
-}
+    
+    main -right-> Director : Uses
+    main --> TextBuilder : Uses
+    main --> HTMLBuilder : Uses
 
-    main -right-> Director : Users
-    main --> TextBuilder : Users
-    main --> HTMLBuilder : Users
+    Director o-right- Builder
+    '左上から順に繋げる必要がある
+    
     
 
 @enduml
