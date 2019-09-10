@@ -1,0 +1,44 @@
+@startuml
+
+title ブリッジパターン
+
+package main {
+    object main {
+    }
+}
+
+package Bridge {
+    abstract Display {
+        impl
+        {abstract} open(arg): void
+        {abstract} print(arg): void
+        {abstract} close(arg): void
+        {abstract} display(arg): void
+    }
+
+    class CountDisplay {
+        multi_display(arg): void
+    }
+
+    abstract DisplayImpl {
+        {abstract} raw_open(arg): void
+        {abstract} raw_print(arg): void
+        {abstract} raw_close(arg): void
+    }
+    'displayのメソッド使わない？
+
+    class StringDisplayImpl {
+        raw_open(arg): void
+        raw_print(arg): void
+        raw_close(arg): void
+    } 
+}
+
+    main -right-> CountDisplay : Uses
+    main --> StringDisplayImpl : Uses
+    CountDisplay -up-|> Display
+    Display o-right-> DisplayImpl
+    StringDisplayImpl -up-|> DisplayImpl
+    
+
+@enduml
