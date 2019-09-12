@@ -60,7 +60,7 @@ class CountDisplay(Display):
   
   def multi_display(self, times: int) -> None:
     super().open()
-    for i in range(times):
+    for _ in range(times):
       super().print()
     super().close()
 

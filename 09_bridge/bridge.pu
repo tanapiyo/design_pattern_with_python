@@ -8,12 +8,13 @@ package main {
 }
 
 package Bridge {
-    abstract Display {
+    'abstract Display {
+    class Display {
         impl
-        {abstract} open(arg): void
-        {abstract} print(arg): void
-        {abstract} close(arg): void
-        {abstract} display(arg): void
+        open(arg): void
+        print(arg): void
+        close(arg): void
+        display(arg): void
     }
 
     class CountDisplay {
@@ -33,9 +34,9 @@ package Bridge {
         raw_close(arg): void
     } 
 }
-
+    main --> Display : Uses
     main -right-> CountDisplay : Uses
-    main --> StringDisplayImpl : Uses
+    main --> StringDisplayImpl : Create
     CountDisplay -up-|> Display
     Display o-right-> DisplayImpl
     StringDisplayImpl -up-|> DisplayImpl
