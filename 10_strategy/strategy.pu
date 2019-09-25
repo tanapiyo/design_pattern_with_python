@@ -1,0 +1,45 @@
+@startuml
+
+title ストラテジーパターン
+
+package main {
+    object main {
+    }
+    class Player{
+      strategy
+      next_hand(arg): void
+      win(arg): void
+      lose(arg): void
+      even(arg): void
+    }
+}
+
+package Strategy {
+    ' 3つのインスタンスだけシングルトンでもつ。VOってやつ？
+    class Hand{
+
+    }
+    abstract Strategy {
+        {abstract} next_hand(arg): void
+        {abstract} study(arg): void
+    }
+
+    class WinningStrategy {
+        next_hand(arg): void
+        study(arg): void
+    }
+
+    class ProbStrategy {
+        next_hand(arg): void
+        study(arg): void
+    }
+}
+    main --> Display : Uses
+    main -right-> CountDisplay : Uses
+    main --> StringDisplayImpl : Create
+    CountDisplay -up-|> Display
+    Display o-right-> DisplayImpl
+    StringDisplayImpl -up-|> DisplayImpl
+    
+
+@enduml

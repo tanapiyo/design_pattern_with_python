@@ -5,7 +5,7 @@ def main():
   manager = Manager()
   upen = UnderlinePen("~")
   mbox = MessageBox("*")
-  sbox = MessageBox("/")
+  sbox = MessageBox("/") #インスタンス2つ作っちゃってるけど…コピーして改造するわけじゃないの？
   manager.register("strong message", upen)
   manager.register("warning box", mbox)
   manager.register("slash box", sbox)
