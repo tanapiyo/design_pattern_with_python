@@ -16,9 +16,9 @@ package main {
 
 package Strategy {
     ' 3つのインスタンスだけシングルトンでもつ。VOってやつ？
-    class Hand{
+    ' class Hand{
 
-    }
+    ' }
     abstract Strategy {
         {abstract} next_hand(arg): void
         {abstract} study(arg): void
@@ -34,12 +34,11 @@ package Strategy {
         study(arg): void
     }
 }
-    main --> Display : Uses
-    main -right-> CountDisplay : Uses
-    main --> StringDisplayImpl : Create
-    CountDisplay -up-|> Display
-    Display o-right-> DisplayImpl
-    StringDisplayImpl -up-|> DisplayImpl
+    main --> Player 
+    Player o-right-> Strategy
+    WinningStrategy .up.|> Strategy 
+    ProbStrategy .up.|> Strategy 
+    
     
 
 @enduml
