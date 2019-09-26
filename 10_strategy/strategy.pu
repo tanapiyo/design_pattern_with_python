@@ -5,13 +5,7 @@ title ストラテジーパターン
 package main {
     object main {
     }
-    class Player{
-      strategy
-      next_hand(arg): void
-      win(arg): void
-      lose(arg): void
-      even(arg): void
-    }
+    
 }
 
 package Strategy {
@@ -19,6 +13,13 @@ package Strategy {
     ' class Hand{
 
     ' }
+    class Player{
+      strategy
+      next_hand(arg): void
+      win(arg): void
+      lose(arg): void
+      even(arg): void
+    }
     abstract Strategy {
         {abstract} next_hand(arg): void
         {abstract} study(arg): void
