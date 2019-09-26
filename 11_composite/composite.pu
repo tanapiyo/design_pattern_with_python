@@ -1,0 +1,44 @@
+@startuml
+
+title コンポジットパターン
+
+package main {
+    object main {
+    }
+    
+}
+
+package Composite {
+    abstract Entry{
+      {abstract} get_name(arg): void
+      {abstract} get_size(arg): void
+      {abstract} print_list(arg): void
+      {abstract} add(arg): void
+    }
+
+    class File {
+        name : Strategy
+        size : int
+        get_name(arg): void
+        get_size(arg): void
+        print_list(arg): void
+    }
+
+    class Directory {
+        name : Strategy
+        directory : int
+        get_name(arg): void
+        get_size(arg): void
+        print_list(arg): void
+        add(arg): void
+    }
+
+    class FileTreatmentException {
+    }
+}
+    main -right-> Entry 
+    File -up-|> Entry 
+    Directory -up-|> Entry
+    Directory o-up-> Entry
+
+@enduml
