@@ -1,0 +1,53 @@
+@startuml
+
+title デコレーターパターン
+
+package main {
+    object main {
+    }
+    
+}
+
+package Decorator {
+
+    abstract Display {
+        {abstract} get_columns(arg): void
+        {abstract} get_rows(arg): void
+        {abstract} get_row_text(arg): void
+        show(arg): void
+    }
+
+    class StringDisplay {
+        string: str
+        get_columns(arg): void
+        get_rows(arg): void
+        get_row_text(arg): void
+    }
+
+    abstract Border {
+        display: Display
+    }
+
+    class SideBorder {
+        borderChar: str
+        get_columns(arg): void
+        get_rows(arg): void
+        get_row_text(arg): void
+    }
+
+    class FullBorder {
+        get_columns(arg): void
+        get_rows(arg): void
+        get_row_text(arg): void
+        make_line(arg): void
+    }
+
+}
+    ' main -right-> Display 
+    StringDisplay -up-|> Display 
+    Border -up-|> Display
+    Border o-up-> Display
+    SideBorder -up-|> Border
+    FullBorder -up-|> Border
+
+@enduml
