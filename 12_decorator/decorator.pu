@@ -49,5 +49,9 @@ package Decorator {
     Border o-up-> Display
     SideBorder -up-|> Border
     FullBorder -up-|> Border
+    'main -right-> Display
+    'main --> FullBorder : creates
+    'main --> SideBorder : creates
+    'main --> StringDisplay : creates
 
 @enduml
