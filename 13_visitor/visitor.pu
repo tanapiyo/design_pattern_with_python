@@ -1,0 +1,65 @@
+@startuml
+
+title ビジターパターン
+
+package main {
+    object main {
+    }
+    
+}
+
+package Visitor {
+
+    abstract Visitor {
+        {abstract} visit(File): void
+        {abstract} visit(Directory): void
+    }
+
+    ' 一覧の表示をするクラス
+    class ListVisitor {
+        currentdir
+        visit(File): void
+        visit(Directory): void
+    }
+
+    abstract Element {
+        {abstract} accept(arg): void
+    }
+
+    abstract Entry {
+        {abstract} get_name(arg): void
+        {abstract} get_size(arg): void
+        {abstract} add(arg): void
+        {abstract} iterator(arg): void
+    }
+
+    class File {
+        name: str
+        size: int
+        accept(arg): void
+        get_name(arg): void
+        get_size(arg): void
+    }
+
+    class Directory {
+        name: str
+        dir
+        accept(arg): void
+        get_name(arg): void
+        get_size(arg): void
+        add(arg): void
+        iterator(arg): void
+    }
+
+}
+
+    ListVisitor -up-|> Visitor 
+    main -up-|> ListVisitor : Uses
+    main -up-|> File : Uses
+    main -up-|> Directory : Uses
+    File -up-|> Entry
+    Directory -up-|> Entry
+    Entry .up.|> Element
+    Directory o-up-> Entry
+
+@enduml
