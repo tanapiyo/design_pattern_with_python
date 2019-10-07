@@ -68,7 +68,7 @@ class Directory(Entry):
             __size = __size + entry.get_size()
         return __size
 
-    def get_directory(self) -> list:  # 邪悪なgetter…
+    def get_directory(self) -> list:  # 邪悪なgetter… 邪悪じゃない
         return self.__directory
 
     def add(self, entry: 'Entry') -> 'Entry':
@@ -82,7 +82,8 @@ class Directory(Entry):
     def accept(self, v: 'Visitor'):
         v.visit(self)
 
-
+#visitorが渡ってきた。俺の子供たちにvisitorを渡してやろう
+#再帰処理。末端までは渡すだけで、下から上に渡されていく。オブジェクトは上から下に渡っていく
 class ListVisitor(Visitor):
     def __init__(self):
         self.__currentdir = ""

@@ -43,7 +43,7 @@ package Visitor {
 
     class Directory {
         name: str
-        dir
+        dir: Entry
         accept(arg): void
         get_name(arg): void
         get_size(arg): void
@@ -54,9 +54,9 @@ package Visitor {
 }
 
     ListVisitor -up-|> Visitor 
-    main -up-|> ListVisitor : Uses
-    main -up-|> File : Uses
-    main -up-|> Directory : Uses
+    main -up-> ListVisitor : Uses
+    main -up-> File : Uses
+    main -up-> Directory : Uses
     File -up-|> Entry
     Directory -up-|> Entry
     Entry .up.|> Element
