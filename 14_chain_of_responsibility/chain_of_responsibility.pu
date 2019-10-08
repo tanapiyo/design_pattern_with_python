@@ -1,0 +1,52 @@
+@startuml
+
+title 責任たらい回しパターン
+
+package main {
+    object main {
+    }
+
+    class Trouble{
+      number: int
+    }
+    
+}
+
+package ChainofResponsibility {
+
+    class Support {
+        name: str
+        next: Support
+        support(): void
+        set_next(): void
+        {abstract} resolve(): void
+    }
+
+    class NoSupport {
+        resolve(): void
+    }
+
+    class LimitSupport {
+        limit: int
+        resolve(): void
+    }
+
+    class OddSupport {
+        resolve(): void
+    }
+
+    class SpecialSupport {
+        number: int
+        resolve(): void
+    }
+
+}
+
+    main -right-> Support : Request
+    Support o--> Support
+    NoSupport -up-|> Support
+    LimitSupport -up-|> Support
+    OddSupport -up-|> Support
+    SpecialSupport -up-|> Support
+
+@enduml
