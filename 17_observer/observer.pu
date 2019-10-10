@@ -1,0 +1,48 @@
+@startuml
+
+title オブザーバーパターン
+
+package main {
+    object main {
+    }
+}
+
+package Observer {
+
+    abstract Observer {
+        {abstract} update(): void
+    }
+
+    ' 値が変更される人。変更されたことをObserverに伝える
+    class NumberGenerator {
+        observers: Observer
+        add_observer(): void
+        delete_observer(): void
+        notify_observer(): void
+        get_number(): void
+        execute(): void
+    }
+
+    class RandomNumberGenerator {
+        random
+        number: int
+        get_number(): void
+        execute(): void
+    }
+
+    class DigitObserver {
+        update(): void
+    }
+
+    class GraphObserver {
+        update(): void
+    }
+
+}
+
+    NumberGenerator o-right-> Observer : Notifies
+    RandomNumberGenerator -up-|> NumberGenerator
+    DigitObserver .up.|> Observer
+    GraphObserver .up.|> Observer
+
+@enduml
