@@ -1,0 +1,36 @@
+@startuml
+
+title フライウェイトパターン
+
+package main {
+    object main {
+    }
+}
+
+package Flyweight {
+   
+    class BigChar {
+        charname: str
+        fontdata: str
+        print(): void
+    }
+
+    class BigCharFactory {
+        pool
+        singleton: BigChar
+        big_char_factory(): void
+        get_instance(): void
+        get_big_char(): void
+    }
+
+    class BigString {
+        bigchars
+        print(): void
+    }
+}
+    main -right->BigString : Uses
+    BigString -up-> BigCharFactory : Uses
+    BigCharFactory o-up-> BigChar : Creates
+    BigString o-up-> BigChar : Uses
+
+@enduml
